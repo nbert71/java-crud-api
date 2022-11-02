@@ -1,0 +1,144 @@
+#Requetes à executer dans l'ordre pour tester l'API
+
+### Get all users
+# Should return : []
+GET http://localhost:8080/user
+
+### Post user 1
+# Should return : nothing
+POST http://localhost:8080/user
+Content-Type: application/json
+
+{
+  "firstName": "Nicolas",
+  "lastName": "Bert",
+  "username": "nbert",
+  "email": "nbert@test.com",
+  "promo": 2020
+}
+
+### Post user 2
+# Shuold return : nothing
+POST http://localhost:8080/user
+Content-Type: application/json
+
+{
+  "firstName": "Harry",
+  "lastName": "Cover",
+  "username": "hcover",
+  "email": "hcover@test.com",
+  "promo": 2022
+}
+
+### Get all users
+# Should return : [user1, user2]
+GET http://localhost:8080/user
+
+### Update user 1
+# Should return : nothing
+PUT http://localhost:8080/user/1
+Content-Type: application/json
+
+{
+  "firstName": "Nicoco le rigolo",
+  "lastName": "Bert",
+  "username": "nbert",
+  "email": "nbert@test.com",
+  "promo": 2020
+}
+
+### Get user by id
+# Should return : user1 (modified from previous put request)
+GET http://localhost:8080/user/1
+
+
+### Get all mobilities
+# Should return : []
+GET http://localhost:8080/mobility
+
+### Create mobility 1
+# Should return : nothing
+POST http://localhost:8080/mobility
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "type": "SSE",
+  "title": "Stage en développemet web",
+  "description": "Un stage vraiment trop cool dans un labo super sympa",
+  "city": "Mons",
+  "country": "Belgique",
+  "partner": "UMons",
+  "startedOn": "2022-02-07",
+  "finishedOn": "2022-07-01"
+}
+
+### Create mobility 2
+# Should return : nothing
+POST http://localhost:8080/mobility
+Content-Type: application/json
+
+{
+  "user_id": 2,
+  "type": "SMA",
+  "title": "Cybersecurity semester",
+  "description": "Un SMA au top !",
+  "city": "Berlin",
+  "country": "Allemagne",
+  "partner": "TUB",
+  "startedOn": "2022-03-02",
+  "finishedOn": "2022-07-28"
+}
+
+### Get all mobilities
+# Should return : [mobility3, mobility4]
+GET http://localhost:8080/mobility
+
+### Get all mobilities for user 1
+# Should return : [mobility3]
+GET http://localhost:8080/mobility/user/1
+
+### Update mobility 3
+# user1 has now 0 mobilities and user2 has 2 mobilities
+# Should return : nothing
+PUT http://localhost:8080/mobility/3
+Content-Type: application/json
+
+{
+  "user_id": 2,
+  "type": "SSE",
+  "title": "Stage en développemet web trop stylé",
+  "description": "Un stage vraiment trop cool dans un labo super sympa",
+  "city": "Mons",
+  "country": "Belgique",
+  "partner": "UMons",
+  "startedOn": "2022-02-07",
+  "finishedOn": "2022-07-01"
+}
+
+### Get mobility by id
+# Should return : mobility3 (modified from last put request)
+GET http://localhost:8080/mobility/3
+
+### Get all mobilities for user 2
+# Should return : [mobility3, mobility4]
+# with previous changes
+GET http://localhost:8080/mobility/user/2
+
+### Delete mobility 3
+# Should return : nothing
+DELETE http://localhost:8080/mobility/3
+
+### Get all mobilities
+# Should return : [mobility4] <-- one mobility and it is linked to user2
+GET http://localhost:8080/mobility
+
+### Delete user 2
+# Should return : nothing
+# it will also delete all mobilities related to this user
+DELETE http://localhost:8080/user/2
+
+### Get all mobilities (empty)
+# Should return : [] (because user 2 has been deleted)
+GET http://localhost:8080/mobility
+
