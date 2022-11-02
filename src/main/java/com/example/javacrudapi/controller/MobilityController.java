@@ -48,4 +48,29 @@ public class MobilityController {
 
         this.mobilityRepository.save(mobility);
     }
+
+    @PutMapping(value = "/{id}")
+    public void updateMobility(@PathVariable Long id, @RequestBody MobilityDTO mobility){
+        Optional<MobilityEntity> oldMobility = this.mobilityRepository.findById(id);
+        if(oldMobility.isPresent()){
+            MobilityEntity newMobility = oldMobility.get();
+            newMobility.setType(mobility.type);
+            newMobility.setCity(mobility.city);
+            newMobility.setPartner(mobility.partner);
+            newMobility.setTitle(mobility.title);
+            newMobility.setCountry(mobility.country);
+            newMobility.setDescription(mobility.description);
+
+            //update author
+            Optional<UserEntity> newUser = this.userRepository.findById(mobility.user_id);
+            newUser.ifPresent(newMobility::setAuthor);
+
+            this.mobilityRepository.save(newMobility);
+        }
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public void deleteMobility(@PathVariable Long id){
+        this.mobilityRepository.deleteById(id);
+    }
 }

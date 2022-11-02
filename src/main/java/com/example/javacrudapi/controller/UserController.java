@@ -35,6 +35,22 @@ public class UserController{
 
     @PutMapping(value = "/{id}")
     public void updateUser(@RequestBody UserEntity user, @PathVariable Long id){
-        //TBD
+        Optional<UserEntity> oldUser = this.userRepository.findById(id);
+        if(oldUser.isPresent()){
+            UserEntity newUser = oldUser.get();
+            newUser.setEmail(user.getEmail());
+            newUser.setPromo(user.getPromo());
+            newUser.setUsername(user.getUsername());
+            newUser.setFirstName(user.getFirstName());
+            newUser.setLastName(user.getLastName());
+            // on ne s'occupe pas des mobilités ici
+            this.userRepository.save(newUser);
+        }
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public void deleteUser(@PathVariable Long id){
+        this.userRepository.deleteById(id);
+        // improvement : also delete all mobilities related to this user
     }
 }
