@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Controller
 @ResponseBody
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/users")
 @AllArgsConstructor
 public class UserController{
 

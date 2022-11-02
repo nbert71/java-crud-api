@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Controller
 @ResponseBody
-@RequestMapping(value = "/mobility")
+@RequestMapping(value = "/mobilities")
 @AllArgsConstructor
 public class MobilityController {
 

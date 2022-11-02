@@ -2,11 +2,11 @@
 
 ### Get all users
 # Should return : []
-GET http://localhost:8080/user
+GET http://localhost:8080/users
 
 ### Post user 1
 # Should return : nothing
-POST http://localhost:8080/user
+POST http://localhost:8080/users
 Content-Type: application/json
 
 {
@@ -19,7 +19,7 @@ Content-Type: application/json
 
 ### Post user 2
 # Shuold return : nothing
-POST http://localhost:8080/user
+POST http://localhost:8080/users
 Content-Type: application/json
 
 {
@@ -32,11 +32,11 @@ Content-Type: application/json
 
 ### Get all users
 # Should return : [user1, user2]
-GET http://localhost:8080/user
+GET http://localhost:8080/users
 
 ### Update user 1
 # Should return : nothing
-PUT http://localhost:8080/user/1
+PUT http://localhost:8080/users/1
 Content-Type: application/json
 
 {
@@ -49,16 +49,16 @@ Content-Type: application/json
 
 ### Get user by id
 # Should return : user1 (modified from previous put request)
-GET http://localhost:8080/user/1
+GET http://localhost:8080/users/1
 
 
 ### Get all mobilities
 # Should return : []
-GET http://localhost:8080/mobility
+GET http://localhost:8080/mobilities
 
 ### Create mobility 1
 # Should return : nothing
-POST http://localhost:8080/mobility
+POST http://localhost:8080/mobilities
 Content-Type: application/json
 
 {
@@ -75,7 +75,7 @@ Content-Type: application/json
 
 ### Create mobility 2
 # Should return : nothing
-POST http://localhost:8080/mobility
+POST http://localhost:8080/mobilities
 Content-Type: application/json
 
 {
@@ -92,16 +92,16 @@ Content-Type: application/json
 
 ### Get all mobilities
 # Should return : [mobility3, mobility4]
-GET http://localhost:8080/mobility
+GET http://localhost:8080/mobilities
 
 ### Get all mobilities for user 1
 # Should return : [mobility3]
-GET http://localhost:8080/mobility/user/1
+GET http://localhost:8080/mobilities/user/1
 
 ### Update mobility 3
 # user1 has now 0 mobilities and user2 has 2 mobilities
 # Should return : nothing
-PUT http://localhost:8080/mobility/3
+PUT http://localhost:8080/mobilities/3
 Content-Type: application/json
 
 {
@@ -118,27 +118,27 @@ Content-Type: application/json
 
 ### Get mobility by id
 # Should return : mobility3 (modified from last put request)
-GET http://localhost:8080/mobility/3
+GET http://localhost:8080/mobilities/3
 
 ### Get all mobilities for user 2
 # Should return : [mobility3, mobility4]
 # with previous changes
-GET http://localhost:8080/mobility/user/2
+GET http://localhost:8080/mobilities/user/2
 
 ### Delete mobility 3
 # Should return : nothing
-DELETE http://localhost:8080/mobility/3
+DELETE http://localhost:8080/mobilities/3
 
 ### Get all mobilities
 # Should return : [mobility4] <-- one mobility and it is linked to user2
-GET http://localhost:8080/mobility
+GET http://localhost:8080/mobilities
 
 ### Delete user 2
 # Should return : nothing
 # it will also delete all mobilities related to this user
-DELETE http://localhost:8080/user/2
+DELETE http://localhost:8080/users/2
 
 ### Get all mobilities (empty)
 # Should return : [] (because user 2 has been deleted)
-GET http://localhost:8080/mobility
+GET http://localhost:8080/mobilities
 
