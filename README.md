@@ -43,3 +43,8 @@ Dans IntelliJ, assurez vous que le fichier `JavaCrudApiApplication`
 est sélectionné dans la barre de Configuration en haut à droite (normalement il est détecté automatiquement).
 Cliquer ensuite sur le bouton Run.
 L'application tourne désormais sur le port `8080`.
+
+## Tester l'application
+
+A la racine du projet se trouve un fichier `requests.http` qui contient les
+reqûetes à effectuer dans l'ordre afin de tester l'application. Vous pouvez l'ouvrir directement avec Intellij et tester l'application.
